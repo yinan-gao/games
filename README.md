@@ -1,4 +1,4 @@
-# harvard
+# games
 
 ## 🐍 贪吃蛇
 
