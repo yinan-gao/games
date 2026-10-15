@@ -80,7 +80,10 @@
 
   function startGame() {
     clearTimeout(timer);
-    game.reset();
+    // 第一次开始时沿用页面上已经画出的初始局面，避免食物突然换位置
+    if (phase !== 'ready') {
+      game.reset();
+    }
     bestBeforeRound = bestScore;
     setPhase('running');
     hideOverlay();
