@@ -290,15 +290,18 @@
       case 'Space':
       case 'Enter':
       case 'NumpadEnter': {
+        // 长按时忽略自动重复的按键，避免反复暂停 / 继续
+        if (event.repeat) {
+          event.preventDefault();
+          return;
+        }
         // 焦点在开始 / 暂停按钮上时交给按钮自己处理，避免一次按键触发两次
         const target = event.target;
         if ((target === overlayButton || target === pauseButton) && !target.disabled) {
           return;
         }
         event.preventDefault();
-        if (!event.repeat) {
-          primaryAction();
-        }
+        primaryAction();
         break;
       }
       case 'KeyP':
