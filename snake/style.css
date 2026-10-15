@@ -1,0 +1,248 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1120;
+  --panel: #1e293b;
+  --panel-active: #334155;
+  --border: rgba(148, 163, 184, 0.2);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, #1e293b, var(--bg) 70%);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(100%, 480px, 62vh);
+  margin: auto;
+}
+
+.game-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 8px;
+}
+
+.stat {
+  min-width: 68px;
+  padding: 6px 12px;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.board {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.board canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  touch-action: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay h2 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.overlay p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+button {
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.primary-button {
+  margin-top: 4px;
+  padding: 10px 28px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #052e16;
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.35);
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.primary-button:hover {
+  background: var(--accent-hover);
+}
+
+.primary-button:active {
+  transform: scale(0.97);
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.hint-touch {
+  display: none;
+}
+
+.secondary-button {
+  flex-shrink: 0;
+  padding: 6px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.secondary-button:hover:not(:disabled) {
+  border-color: var(--muted);
+}
+
+.secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.dpad {
+  display: none;
+  grid-template-areas:
+    ". up ."
+    "left down right";
+  grid-template-columns: repeat(3, 64px);
+  grid-auto-rows: 56px;
+  gap: 8px;
+  justify-content: center;
+}
+
+.dpad button {
+  font-size: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.dpad button:active {
+  background: var(--panel-active);
+}
+
+.dpad [data-direction="up"] {
+  grid-area: up;
+}
+
+.dpad [data-direction="left"] {
+  grid-area: left;
+}
+
+.dpad [data-direction="down"] {
+  grid-area: down;
+}
+
+.dpad [data-direction="right"] {
+  grid-area: right;
+}
+
+/* 触屏设备：显示方向按钮和对应的操作提示 */
+@media (pointer: coarse) {
+  .hint-keyboard {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
+
+  .dpad {
+    display: grid;
+  }
+}

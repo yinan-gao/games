@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>贪吃蛇</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="snake.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <main class="game">
+      <header class="game-header">
+        <h1><span aria-hidden="true">🐍</span> 贪吃蛇</h1>
+        <div class="scoreboard">
+          <div class="stat">
+            <span class="stat-label">得分</span>
+            <span class="stat-value" id="score">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">最高分</span>
+            <span class="stat-value" id="best">0</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="board">
+        <canvas id="board" role="img" aria-label="贪吃蛇棋盘"></canvas>
+        <div class="overlay" id="overlay">
+          <h2 id="overlay-title">准备好了吗？</h2>
+          <p id="overlay-text">吃掉食物让蛇变长，别撞到墙或自己！</p>
+          <button type="button" class="primary-button" id="overlay-button">开始游戏</button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <p class="hint">
+          <span class="hint-keyboard">方向键 / WASD 移动，空格键开始或暂停</span>
+          <span class="hint-touch">在棋盘上滑动，或点按下方按钮移动</span>
+        </p>
+        <button type="button" class="secondary-button" id="pause-button" disabled>暂停</button>
+      </div>
+
+      <div class="dpad">
+        <button type="button" data-direction="up" aria-label="向上" tabindex="-1">↑</button>
+        <button type="button" data-direction="left" aria-label="向左" tabindex="-1">←</button>
+        <button type="button" data-direction="down" aria-label="向下" tabindex="-1">↓</button>
+        <button type="button" data-direction="right" aria-label="向右" tabindex="-1">→</button>
+      </div>
+    </main>
+  </body>
+</html>
